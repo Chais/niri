@@ -10,6 +10,8 @@ if [ -n "${MANAGERPID:-}" ] && [ "${SYSTEMD_EXEC_PID:-}" = "$$" ]; then
     esac
 fi
 
+shopt -q login_shell || sh -l $0 $@
+
 # Try to detect the service manager that is being used
 if hash systemctl >/dev/null 2>&1; then
     # Make sure there's no already running session.
